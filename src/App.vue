@@ -5,6 +5,7 @@
 </template>
 <script>
 import jwt_decode from 'jwt-decode'
+import { isEmpty } from './utils'
 export default {
     name: "app",
     components: {},
@@ -13,7 +14,7 @@ export default {
         // 解析 token
         const decoded = jwt_decode(localStorage.getItem('eleToken'))
         // token 存储到 vuex 中
-        this.$store.dispatch('setAuthenticated', !this.isEmpty(decoded))
+        this.$store.dispatch('setAuthenticated', !isEmpty(decoded))
         this.$store.dispatch('setUser', decoded)
       }
     },
