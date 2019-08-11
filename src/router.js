@@ -6,6 +6,7 @@ import Login from './views/Login.vue'
 import NotFound from './views/404.vue'
 import Home from './views/Home.vue'
 import Infoshow from './views/Infoshow.vue'
+import FundList from './views/FundList.vue'
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ const router = new Router({
           path: '/infoshow',
           name: 'infoshow',
           component: Infoshow
+        },
+        {
+          path: '/fundlist',
+          name: 'fundlist',
+          component: FundList
         }
       ]
     },
