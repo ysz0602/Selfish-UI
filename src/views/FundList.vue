@@ -1,7 +1,7 @@
 <template>
     <div class="fillContainer">
         <div>
-            <el-form :inline="true" ref="add_data" :model="search_data">
+            <el-form :inline="true" ref="add_data">
                 <el-form-item label="按照时间筛选">
                     <el-date-picker
                         v-model="search_data.value"
@@ -9,7 +9,8 @@
                         range-separator="至"
                         start-placeholder="开始日期"
                         end-placeholder="结束日期"
-                        align="right">                        
+                        align="right"
+                        :picker-options="pickerOptions">                        
                     </el-date-picker>
                 </el-form-item>
                 <el-form-item>
@@ -46,7 +47,7 @@
                     width="250">
                     <template slot-scope="scope">
                         <i class="el-icon-time"></i>
-                        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+                        <span style="margin-left: 10px">{{ $moment(scope.row.date).format('YYYY-MM-DD HH:mm') }}</span>
                     </template>
                 </el-table-column>
                 <el-table-column
@@ -145,6 +146,11 @@ export default {
         return {
             search_data: {
                 value: []
+            },
+            pickerOptions: {
+                disabledDate(time) {
+                    return time.getTime() > Date.now();
+                }
             },
             filterTableData: [],
             paginations: {
